@@ -10,7 +10,7 @@ function EventDetail() {
   );
 
   console.log("Event ID:", eventId);
-  console.log("Fetched Event Data:", data); // Debugging API response
+  console.log("Fetched Event Data:", data); 
 
   if (loading) return <p>Loading event details...</p>;
   if (!data) return <p>No event data found.</p>;
@@ -22,7 +22,6 @@ function EventDetail() {
         <h1 className="mb-3">{data.eventTitle}</h1>
 
         <div className="row">
-          {/* Left Side: Event Image & Description */}
           <div className="col-md-6">
             <div className="text-center">
               <img
@@ -44,7 +43,6 @@ function EventDetail() {
             ))}
           </div>
 
-          {/* Right Side: Event Details & Speakers */}
           <div className="col-md-6">
             <div className="p-3 bg-light shadow rounded">
               <p><strong>Date & Time:</strong> {new Date(data.eventDate).toLocaleString()}, {data.eventTime}</p>
@@ -52,7 +50,6 @@ function EventDetail() {
               <p><strong>Price:</strong> ${data.eventPrice}</p>
             </div>
 
-            {/* Speakers Section */}
             <h4 className="mt-3">Speakers:</h4>
             {data.eventSpeakerName && data.eventSpeakerName.length > 0 ? (
               <div className="row">
