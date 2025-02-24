@@ -1,33 +1,24 @@
-import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
+import React, { useState } from "react";
 import useFetch from "../useFetch";
 import EventCard from "../components/EventCard";
 
-const ListingPage=()=>{
-  const [eventType, setEventType] = useState("");
-  const [searchTitle, setSearchTitle] = useState("");
-  const [searchTag, setSearchTag] = useState("");
-  
+const ListingPage=({ searchTitleOrTag })=>{
+  const [eventType, setEventType] = useState(""); 
   const apiUrl =
-  searchTitle && searchTag
-    ? `https://meetup-backend-lac.vercel.app/event/titleAndTag/${searchTitle}/${searchTag}`
+  searchTitleOrTag
+    ? `https://meetup-backend-lac.vercel.app/eventTitleOrtag/${searchTitleOrTag}`
     : eventType
     ? `https://meetup-backend-lac.vercel.app/events/${eventType}`
     : `https://meetup-backend-lac.vercel.app/readAllEvents`;
 
   const { data, loading, error } = useFetch(apiUrl);
+
+
+
   const handleEventTypeChange = (e) => {
-    setEventType(e.target.value); 
-    setSearchTitle("");  
-  setSearchTag("");
- 
+    setEventType(e.target.value);  
   };
-  const handleSearch = (query) => {
-    const [title, tag] = query.split(",").map((item) => item.trim());
-    setSearchTitle(title || "");
-    setSearchTag(tag || "");
-    setEventType(""); 
-  };
+
 
   if (loading) return <p >Loading...</p>;
   if (error) return <p>{error}</p>;

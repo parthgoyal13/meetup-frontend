@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 
 const Header=({ onSearch })=>{
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchTitleOrTag, setSearchTitleOrTag] = useState("");
 
 
   const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
+    setSearchTitleOrTag(e.target.value);
     onSearch(e.target.value); 
   };
   
@@ -21,7 +21,7 @@ const Header=({ onSearch })=>{
 
     <input type="text" 
     placeholder="Search by title and tags" className="form-control"
-    value={searchQuery}
+    value={searchTitleOrTag}
     onChange={handleSearchChange} />
     </div>
     </header>
