@@ -5,22 +5,25 @@ import EventCard from "../components/EventCard";
 
 const ListingPage=()=>{
   const [eventType, setEventType] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
+  const [searchTag, setSearchTag] = useState("");
   
-  const apiUrl = searchQuery
-  ? `https://meetup-backend-lac.vercel.app/event/titleAndTag/${searchQuery}/${searchQuery}`
-  : eventType
-  ? `https://meetup-backend-lac.vercel.app/events/${eventType}`
-  : `https://meetup-backend-lac.vercel.app/readAllEvents`;
+  const apiUrl =
+  searchTitle && searchTag
+    ? `https://meetup-backend-lac.vercel.app/event/titleAndTag/${searchTitle}/${searchTag}`
+    : eventType
+    ? `https://meetup-backend-lac.vercel.app/events/${eventType}`
+    : `https://meetup-backend-lac.vercel.app/readAllEvents`;
 
   const { data, loading, error } = useFetch(apiUrl);
   const handleEventTypeChange = (e) => {
     setEventType(e.target.value); 
     setSearchQuery("");
   };
-
   const handleSearch = (query) => {
-    setSearchQuery(query);
+    const [title, tag] = query.split(",").map((item) => item.trim());
+    setSearchTitle(title || "");
+    setSearchTag(tag || "");
     setEventType(""); 
   };
 
