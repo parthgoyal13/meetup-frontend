@@ -18,7 +18,9 @@ const ListingPage=()=>{
   const { data, loading, error } = useFetch(apiUrl);
   const handleEventTypeChange = (e) => {
     setEventType(e.target.value); 
-    setSearchQuery("");
+    setSearchTitle("");  
+  setSearchTag("");
+ 
   };
   const handleSearch = (query) => {
     const [title, tag] = query.split(",").map((item) => item.trim());
@@ -31,7 +33,6 @@ const ListingPage=()=>{
   if (error) return <p>{error}</p>;
   return(
     <>
-    <Header onSearch={handleSearch}/>
     <div className="container mt-4">
     <div className="d-flex justify-content-between align-items-center mb-4">
       <h2 className="mb-0">Meetup Events</h2>
