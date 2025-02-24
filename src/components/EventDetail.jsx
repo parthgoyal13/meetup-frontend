@@ -12,7 +12,7 @@ function EventDetail() {
   console.log("Event ID:", eventId);
   console.log("Fetched Event Data:", data); 
 
-  if (loading) return <p>Loading event details...</p>;
+  if (loading) return <p className="text-center">Loading event details...</p>;
   if (!data) return <p>No event data found.</p>;
 
   return (
